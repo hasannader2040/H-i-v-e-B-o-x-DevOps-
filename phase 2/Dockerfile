@@ -15,4 +15,4 @@ COPY . /app
 ENV PYTHONUNBUFFERED 1
 
 # Run the Python script when the container launches
-CMD ["python", "your_script_name.py"]
+CMD ["python", "app_version.py"]
