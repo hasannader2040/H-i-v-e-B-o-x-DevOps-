@@ -24,9 +24,8 @@ ENV PYTHONUNBUFFERED 1
 # Run the Python script when the container launches
 CMD ["python", "app_version.py"]
 
-
-
 # /////////////////////////////////////////////
+# ////////////////////////////////////////////
 
 
 # Stage 2: Build and run stage for the Flask application
