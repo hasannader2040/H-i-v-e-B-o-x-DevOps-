@@ -1,12 +1,16 @@
 import os
 import random  # Simulating senseBox data fetch
 from flask import Flask, Response, jsonify
-from prometheus_client import generate_latest, Counter # type: ignore
+from prometheus_client import generate_latest, Counter
 
 app = Flask(__name__)
 app.config['DEBUG'] = os.getenv('DEBUG', 'False') == 'True'
 
 REQUEST_COUNT = Counter('request_count', 'App Request Count')
+
+@app.route('/')
+def index():
+    return "Welcome to the SenseBox API!"
 
 @app.route('/metrics')
 def metrics():
@@ -35,8 +39,3 @@ def temperature():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
-
-
-# /////
-
-# print(prometheus_client.__version__)
