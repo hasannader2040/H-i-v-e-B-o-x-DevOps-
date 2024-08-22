@@ -55,29 +55,30 @@ cd sensebox-api
 # Create and activate a virtual environment:
 
 
-Copy code
-python3 -m venv myenv
+**python3 -m venv myenv**
 source myenv/bin/activate
-Install dependencies:
 
-bash
-Copy code
+
+**Install dependencies**:
 pip install -r requirements.txt
-Run the Flask application:
 
-bash
-Copy code
+
+**Run the Flask application**:
 python app.py
 Access the application:
 
 Navigate to http://127.0.0.1:5000/metrics for Prometheus metrics.
 Navigate to http://127.0.0.1:5000/temperature to get the temperature data.
-🖼️ Photos
 
-💡 Contributing
+
+## 🖼️  Photos ## 
+
+ 
+
+## 💡 Contributing##
 Feel free to contribute to this project by forking the repository and creating pull requests. Any improvements or suggestions are welcome. 🛠️
 
-📄 License
+## 📄 License ##
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 
