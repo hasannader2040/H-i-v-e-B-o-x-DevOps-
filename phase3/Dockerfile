@@ -41,7 +41,18 @@ EXPOSE 5000
  # to expose to outside of the cointiner  "--host=0.0.0.0"
 
 
-#  stage 3. 
+# ////////////////// stage 3.
 
+FROM python:3.8-slim-buster as flask-stage3 
+
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
 
 
