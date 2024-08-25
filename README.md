@@ -44,31 +44,38 @@ Response: JSON object containing the average temperature and a status message ("
  ## ⚙️Setup ##
 Clone the repository:
 
-
 Copy code
 # Clone the repository
 
 ```console
-foo@bar:~$ git clone https://github.com/yourusername/sensebox-api.git
-foo
+git clone https://github.com/yourusername/sensebox-api.git
 ```
 
 # Change directory to the project folder
+```console
 cd sensebox-api
+```
 
 # Create and activate a virtual environment:
 
 
 **python3 -m venv myenv**
+```console
 source myenv/bin/activate
-
+```
 
 **Install dependencies**:
-pip install -r requirements.txt
 
+```console
+pip install -r requirements.txt
+```
 
 **Run the Flask application**:
+
+```console
 python app.py
+```
+
 Access the application:
 
 Navigate to http://127.0.0.1:5000/metrics for Prometheus metrics.
