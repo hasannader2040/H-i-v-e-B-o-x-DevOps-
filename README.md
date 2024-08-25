@@ -47,7 +47,11 @@ Clone the repository:
 
 Copy code
 # Clone the repository
-git clone https://github.com/yourusername/sensebox-api.git
+
+```console
+foo@bar:~$ git clone https://github.com/yourusername/sensebox-api.git
+foo
+```
 
 # Change directory to the project folder
 cd sensebox-api
