@@ -26,9 +26,9 @@ jobs:
           pip install flake8
           pip install -r phase3/requirements.txt
 
-      - name: Install Hadolint
+      - name: Lint Dockerfile with Hadolint Docker image
         run: |
-          docker run --rm -i hadolint/hadolint < phase3/Dockerfile
+          docker run --rm -i hadolint/hadolint < phase4/Dockerfile
 
       - name: Lint code and Dockerfile
         run: |
