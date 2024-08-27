@@ -28,8 +28,8 @@ jobs:
 
       - name: Install Hadolint
         run: |
-          docker run --rm -i hadolint/hadolint < Dockerfile
-          
+          docker run --rm -i hadolint/hadolint < phase3/Dockerfile
+
       - name: Lint code and Dockerfile
         run: |
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=myenv
