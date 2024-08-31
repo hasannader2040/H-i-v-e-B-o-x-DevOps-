@@ -48,14 +48,14 @@ jobs:
       - name: Build Docker image
         run: |
           cd phase3
-          docker build -t myapp .
+          docker build -t hassannader2040/my-flask-app .
 
   test:
     runs-on: ubuntu-latest
     needs: build
     services:
       docker:
-        image: my-flask-app
+        image: hassannader2040/my-flask-app
         ports:
           - 5000:5000
     steps:
