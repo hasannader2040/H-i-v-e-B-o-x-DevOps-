@@ -47,7 +47,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t myapp -f phase3/Dockerfile .
+          docker build -t myapp -f phase3/Dockerfile ./phase3
 
   test:
     runs-on: ubuntu-latest
