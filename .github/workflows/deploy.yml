@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install flake8
-          pip install -r phase3/requirements.txt
+          pip install -r ./phase3/requirements.txt
 
       - name: Lint Dockerfile with Hadolint Docker image
         run: |
