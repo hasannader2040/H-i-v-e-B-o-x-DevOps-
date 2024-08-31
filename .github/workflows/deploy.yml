@@ -3,11 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
-      - new
+      - ayomide
   pull_request:
     branches:
-      - new
+      - ayomide
 
 jobs:
   lint:
