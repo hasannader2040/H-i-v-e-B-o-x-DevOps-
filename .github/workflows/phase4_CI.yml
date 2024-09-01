@@ -1,0 +1,52 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  combined:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run Python tests
+      run: pytest tests/
+
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@v1.0.0
+      env:
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        SONAR_LOGIN: ${{ secrets.SONAR_TOKEN }}
+    
+
+    - name: SonarQube Quality Gate check
+      uses: sonarsource/sonarqube-quality-gate-action@v1.0.0
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    - name: Run Semgrep
+      uses: returntocorp/semgrep-action@v1
+      with:
+        config: 'p/ci'
+
+    - name: Install Terrascan
+      run: |
+        curl -L https://github.com/accurics/terrascan/releases/download/v1.14.0/terrascan_1.14.0_linux_amd64.tar.gz | tar xz -C /usr/local/bin terrascan
+
+    - name: Run Terrascan
+      run: terrascan scan -i k8s -d ./manifests
