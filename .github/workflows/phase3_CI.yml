@@ -3,11 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
-      - new
+      - master
   pull_request:
     branches:
-      - new
+      - master
 
 jobs:
   lint:
