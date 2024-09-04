@@ -24,12 +24,15 @@
  # 🌡️ SenseBox API #
 
 ## 🚀 Project Purpose ## 
+<a name="project-purpose"></a>
+
 The SenseBox API is a project designed to simulate a simple environment monitoring system. It provides basic endpoints to retrieve temperature data and expose metrics for monitoring the health of the application. This project serves as a demonstration of how to build a RESTful API using Flask in Python, along with integrating Prometheus for metrics collection.
 
 
 
 
 ## 🧩 Components ## 
+<a name="components"></a>
 The project consists of the following key components:
 
 **Flask Application**: A lightweight Python web framework used to create RESTful routes for interacting with the simulated environment data.
@@ -38,6 +41,7 @@ The project consists of the following key components:
 
 
 ## 📑 Endpoints##
+<a name="endpoints"></a>
 
 **🔍 /metrics**
 
