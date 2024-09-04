@@ -1,5 +1,25 @@
 # restful-opensensemap-Api
 
+## [🚀 Project Purpose](#project-purpose)
+
+## [🧩 Components](#components)
+
+## [📑 Endpoints](#endpoints)
+
+## [Current Version](#current-version)
+
+## [🏷️ How to Run](#how-to-run)
+
+## [⚙️ Setup](#setup)
+
+## [🖼️ Photos](#photos)
+
+## [💡 Contributing](#contributing)
+
+## [📄 License](#license)
+
+
+
 
  # 🌡️ SenseBox API #
 
