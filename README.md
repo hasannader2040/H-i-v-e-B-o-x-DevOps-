@@ -55,20 +55,25 @@ The project consists of the following key components:
 Response: JSON object containing the average temperature and a status message ("Too Cold", "Good", "Too Hot").
 
 ## Current Versio ## 
+<a name="current-version"></a>
+
 **Version**: 1.0.0
 
 
 
 
 ## 🏷️ How to Run ## 
+<a name="how-to-run"></a>
+
 **📋Prerequisites**
 **Python 3.12** or higher
 **Virtual Environment**: It's recommended to use a virtual environment to manage dependencies.
 
  ## ⚙️Setup ##
+ <a name="setup"></a>
+
 Clone the repository:
 
-Copy code
 # Clone the repository
 
 ```console
@@ -106,14 +111,17 @@ Navigate to http://127.0.0.1:5000/metrics for Prometheus metrics.
 Navigate to http://127.0.0.1:5000/temperature to get the temperature data.
 
 
-## 🖼️  Photos ## 
-
+## 🖼️Photos ## 
+<a name="photos"></a>
  
 
 ## 💡 Contributing##
+<a name="contributing"></a>
+
 Feel free to contribute to this project by forking the repository and creating pull requests. Any improvements or suggestions are welcome. 🛠️
 
 ## 📄 License ##
+<a name="license"></a>
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 
