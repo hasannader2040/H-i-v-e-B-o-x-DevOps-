@@ -27,7 +27,7 @@ jobs:
 
       - name: Lint Dockerfile with Hadolint Docker image
         run: |
-          docker run --rm -i hadolint/hadolint < phase4/Dockerfile
+          docker run --rm -v ${{ github.workspace }}/phase4/Dockerfile:/Dockerfile hadolint/hadolint hadolint /Dockerfile
 
           - name: Lint code
           run: |
