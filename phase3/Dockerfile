@@ -48,7 +48,7 @@ FROM python:3.8-slim-buster as flask-stage3
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
+COPY phase3/requirements.txt /app/requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . .
