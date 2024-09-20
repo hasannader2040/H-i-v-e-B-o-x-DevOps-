@@ -31,7 +31,7 @@ def temperature():
         status = "Good"
     else:
         status = "Too Hot"
-    
+
     return jsonify({
         "average_temperature": avg_temp,
         "status": status

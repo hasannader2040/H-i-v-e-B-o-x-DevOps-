@@ -1,4 +1,4 @@
-# Stage 1: Build stage for the app_version.py
+# Stage 1: Build stage for app_version.py
 FROM python:3.11-slim as version-stage
 
 # Set the working directory
@@ -10,25 +10,24 @@ COPY . /app
 # Define environment variable
 ENV PYTHONUNBUFFERED 1
 
-# Run the Python script when the container launches
+# Run the Python script for versioning
 CMD ["python", "app_version.py"]
 
 
+# ----------------------------------------
 
-
-# ////////////////////////////////////////////////////
 
 # Stage 2: Build and run stage for the Flask application
-FROM python:3.8-slim-buster as flask-stage
-
-# Copy requirements.txt for dependency installation
-COPY requirements.txt /app/requirements.txt
+FROM python:3.11-slim as flask-stage
 
 # Set the working directory
 WORKDIR /app
 
+# Copy requirements.txt for dependency installation
+COPY requirements.txt /app/requirements.txt
+
 # Install dependencies
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 # Copy the current directory contents into the container at /app
 COPY . /app
@@ -37,22 +36,24 @@ COPY . /app
 EXPOSE 5000
 
 # Run the Flask application
- CMD ["flask", "run", "--host=0.0.0.0"]  
- # to expose to outside of the cointiner  "--host=0.0.0.0"
+CMD ["flask", "run", "--host=0.0.0.0"]
 
 
-# ////////////////// stage 3.
-
-FROM python:3.8-slim-buster as flask-stage3 
+# ----------------------------------------
 
 
+# Stage 3: Testing the Flask application (if needed)
+FROM python:3.11-slim as test-stage
+
+# Set the working directory
 WORKDIR /app
 
+# Copy the requirements file and install dependencies
 COPY phase3/requirements.txt /app/requirements.txt
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
-COPY . .
+# Copy the application code
+COPY . /app
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
-
-
+# Test-specific CMD, can run tests if needed
+CMD ["pytest", "tests/"]
