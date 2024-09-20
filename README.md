@@ -23,7 +23,7 @@
 
  # 🌡️ SenseBox API #
 
-## 🚀 Project Purpose ## 
+## 🚀 Project Purpose ##
 <a name="project-purpose"></a>
 
 The SenseBox API is a project designed to simulate a simple environment monitoring system. It provides basic endpoints to retrieve temperature data and expose metrics for monitoring the health of the application. This project serves as a demonstration of how to build a RESTful API using Flask in Python, along with integrating Prometheus for metrics collection.
@@ -31,7 +31,7 @@ The SenseBox API is a project designed to simulate a simple environment monitori
 
 
 
-## 🧩 Components ## 
+## 🧩 Components ##
 <a name="components"></a>
 The project consists of the following key components:
 
@@ -54,7 +54,7 @@ The project consists of the following key components:
 **Method**: GET
 Response: JSON object containing the average temperature and a status message ("Too Cold", "Good", "Too Hot").
 
-## Current Versio ## 
+## Current Versio ##
 <a name="current-version"></a>
 
 **Version**: 1.0.0
@@ -62,7 +62,7 @@ Response: JSON object containing the average temperature and a status message ("
 
 
 
-## 🏷️ How to Run ## 
+## 🏷️ How to Run ##
 <a name="how-to-run"></a>
 
 **📋Prerequisites**
@@ -111,9 +111,9 @@ Navigate to http://127.0.0.1:5000/metrics for Prometheus metrics.
 Navigate to http://127.0.0.1:5000/temperature to get the temperature data.
 
 
-## 🖼️Photos ## 
+## 🖼️Photos ##
 <a name="photos"></a>
- 
+
 
 ## 💡 Contributing##
 <a name="contributing"></a>
@@ -123,7 +123,3 @@ Feel free to contribute to this project by forking the repository and creating p
 ## 📄 License ##
 <a name="license"></a>
 This project is licensed under the MIT License. See the LICENSE file for more details.
-
-
-
-

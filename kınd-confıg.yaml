@@ -9,4 +9,3 @@ nodes:
       - containerPort: 443
         hostPort: 8443
         protocol: TCP
-
