@@ -5,6 +5,8 @@ on:
   push:
     tags:
       - 'v*'  # This will trigger the workflow on versioned tags
+    paths:
+      - 'phase4/**'
 
 jobs:
   build-and-push:
