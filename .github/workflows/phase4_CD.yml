@@ -1,5 +1,5 @@
 # .github/workflows/cd.yml
-name: CD Pipeline
+name: phase4_CD Pipeline
 
 on:
   push:
