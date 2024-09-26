@@ -1,12 +1,16 @@
-name: CI Pipeline
+name: Phase4_CI Pipeline
 
 on:
   push:
     branches:
       - master
+    paths:
+      - 'phase4/**'
   pull_request:
     branches:
       - master
+    paths:
+      - 'phase4/**'      
 
 jobs:
   combined:
