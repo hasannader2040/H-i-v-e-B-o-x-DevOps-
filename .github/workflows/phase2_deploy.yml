@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'phase2/**'
+    # paths:
+    #   - 'phase2/**'
 
 jobs:
   build:
