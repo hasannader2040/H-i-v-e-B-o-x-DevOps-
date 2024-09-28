@@ -6,6 +6,8 @@ on:
     - cron: '16 20 * * 4'
   push:
     branches: [ "master" ]
+    paths:
+      - 'phase3/**'
 
 permissions: read-all
 
