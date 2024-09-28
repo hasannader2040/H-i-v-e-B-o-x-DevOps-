@@ -30,3 +30,4 @@ jobs:
       # Step 4: Push the Docker image to Docker Hub
       - name: Push Docker image to Docker Hub
         run: docker push hasan2040/hasan-api:temperature-app
+# fixing /bin/sh -c pip3 install no-cache-dir and their dependencies
