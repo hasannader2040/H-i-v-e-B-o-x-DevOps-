@@ -1,11 +1,11 @@
-name: phase2_CI/CD Pipeline pushing to docker hub 
+name: phase2_CI/CD Pipeline pushing to docker hub
 
 on:
   push:
     branches:
       - master
-    # paths:
-    #   - 'phase2/**'
+    paths:
+      - 'phase2/**'
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
         run: docker build -t hasan2040/hasan-api:temperature-app -f phase3/Dockerfile .
 
       # Step 3: Log in to Docker Hub using GitHub Secrets
-      - name: Login to Docker Hub
+      - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -30,4 +30,3 @@ jobs:
       # Step 4: Push the Docker image to Docker Hub
       - name: Push Docker image to Docker Hub
         run: docker push hasan2040/hasan-api:temperature-app
-# fixing /bin/sh -c pip3 install no-cache-dir and their dependencies
