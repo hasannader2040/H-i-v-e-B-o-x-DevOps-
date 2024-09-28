@@ -16,9 +16,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: List project files
+        run: ls -la phase3/
+
       # Step 2: Build the Docker image
       - name: Build Docker image
-        run: docker build -t hasan2040/hasan-api:temperature-app -f phase3/Dockerfile .
+        run: docker build -t hasannader2040/hasan-api:temperature-app -f phase3/Dockerfile .
 
       # Step 3: Log in to Docker Hub using GitHub Secrets
       - name: Log in to Docker Hub
