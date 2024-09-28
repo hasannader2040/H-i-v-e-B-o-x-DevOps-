@@ -24,7 +24,7 @@ FROM python:3.11-slim as flask-stage
 WORKDIR /app
 
 # Copy requirements.txt for dependency installation
-COPY requirements.txt /app/requirements.txt
+COPY  phase3/requirements.txt /app/requirements.txt
 
 # Install dependencies
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
