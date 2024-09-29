@@ -59,3 +59,5 @@ COPY . /app
 
 # Test-specific CMD, can run tests if needed
 CMD ["pytest", "tests/"]
+
+
