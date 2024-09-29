@@ -77,6 +77,13 @@ jobs:
       - name: Run unit tests
         run: pytest tests/
 
+      # Install pytest explicitly
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Run unit tests
+        run: pytest tests/
+
       - name: Test /version endpoint
         run: |
           curl -s http://127.0.0.1:5000/version | grep "<EXPECTED_VERSION>"
