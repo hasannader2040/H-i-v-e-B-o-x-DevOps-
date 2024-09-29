@@ -71,19 +71,25 @@ jobs:
 
       - name: Install test dependencies
         run: pip install -r phase3/requirements.txt
+        
+      # Add this to check if tests/ directory exists
+      - name: List files
+        run: ls -la phase3/
 
       - name: Install pytest
         run: pip install --upgrade pytest
 
+      
+
       # Run tests using python -m pytest to ensure correct environment usage
       - name: Run unit tests
-        run: python -m pytest tests/
+        run: python -m pytest phase3/tests/
 
       # Test the /version endpoint using curl
       - name: Test /version endpoint
         run: |
           curl -s http://127.0.0.1:5000/version | grep "<EXPECTED_VERSION>"
-          
+
 
   security:
     runs-on: ubuntu-latest
