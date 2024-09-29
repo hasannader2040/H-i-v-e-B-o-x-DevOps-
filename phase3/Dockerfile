@@ -23,8 +23,8 @@ FROM python:3.11-slim as flask-stage
 # Set the working directory
 WORKDIR /app
 
-# Copy requirements.txt for dependency installation
-COPY phase3/requirements.txt /app/requirements.txt
+# Copy requirements.txt for dependency installation // I am confused with the requirements of evey stage 
+COPY requirements.txt /app/requirements.txt
 
 # Install dependencies
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
@@ -51,7 +51,7 @@ WORKDIR /app
 # Copy the requirements file and install dependencies
 # If running from inside phase3: Adjust the Dockerfile to remove phase3/ from the COPY paths.
 # If running from the root of your project: Ensure Docker includes the correct build context by running the build command from the root and pointing to the correct Dockerfile.
-COPY requirements.txt /app/requirements.txt
+COPY phase3/requirements.txt /app/requirements.txt
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 # Copy the application code
