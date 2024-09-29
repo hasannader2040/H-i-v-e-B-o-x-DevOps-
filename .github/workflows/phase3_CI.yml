@@ -53,14 +53,14 @@ jobs:
       - name: Build Docker image
         run: |
           cd phase3
-          docker build -t hassannader2040/my-flask-app .
+          docker build -t hassannader2040/temperature-app .
 
   test:
     runs-on: ubuntu-latest
     needs: build
     services:
       docker:
-        image: hassannader2040/my-flask-app
+        image: hassannader2040/temperature-app
         ports:
           - 5000:5000
     steps:
