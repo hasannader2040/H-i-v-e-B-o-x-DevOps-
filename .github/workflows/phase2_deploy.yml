@@ -16,20 +16,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Step 2: List project files (Optional step to check the file structure)
       - name: List project files
         run: ls -la phase3/
 
-      # Step 2: Build the Docker image
+      # Step 3: Build the Docker image
       - name: Build Docker image
         run: docker build -t hasannader2040/hasan-api:temperature-app -f phase3/Dockerfile .
 
-      # Step 3: Log in to Docker Hub using GitHub Secrets
+      # Step 4: Log in to Docker Hub using a command
       - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAM }}  # make sure 
-          password: ${{ secrets.DOCKERHUB_TOKEN }}      
+        run: |
+          docker login -u hassannader2040 -p ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Step 4: Push the Docker image to Docker Hub
+      # Step 5: Push the Docker image to Docker Hub
       - name: Push Docker image to Docker Hub
         run: docker push hasannader2040/hasan-api:temperature-app
