@@ -79,6 +79,9 @@ jobs:
       - name: Install pytest
         run: pip install --upgrade pytest
 
+          #  listing files
+      - name: List phase3 files
+        run: ls -la phase3/
       
 
       # Run tests using python -m pytest to ensure correct environment usage
