@@ -20,15 +20,19 @@ jobs:
       - name: List project files
         run: ls -la phase3/
 
-      # Step 3: Build the Docker image
+      # Step 3: Check if requirements.txt exists
+      - name: Check if requirements.txt exists
+        run: ls -la phase3/requirements.txt
+
+      # Step 4: Build the Docker image
       - name: Build Docker image
         run: docker build -t hasannader2040/hasan-api:temperature-app -f phase3/Dockerfile .
 
-      # Step 4: Log in to Docker Hub using a command
+      # Step 5: Log in to Docker Hub using a command
       - name: Log in to Docker Hub
         run: |
           docker login -u hassannader2040 -p ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Step 5: Push the Docker image to Docker Hub
+      # Step 6: Push the Docker image to Docker Hub
       - name: Push Docker image to Docker Hub
         run: docker push hasannader2040/hasan-api:temperature-app
