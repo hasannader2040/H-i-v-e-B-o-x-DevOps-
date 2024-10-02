@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
+#  depren ..
+RUN pip3 install --no-cache-dir -r /app/requirements.txt
+
 # Define environment variable
 ENV PYTHONUNBUFFERED 1
 
@@ -26,8 +29,6 @@ WORKDIR /app
 # Copy requirements.txt for dependency installation // I am confused with the requirements of evey stage 
 COPY --from=version-stage /app /app
 
-# Install dependencies
-RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 # # Copy the current directory contents into the container at /app
 # COPY . /app
