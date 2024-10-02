@@ -45,17 +45,8 @@ CMD ["flask", "run", "--host=0.0.0.0"]
 # Stage 3: Testing the Flask application 
 FROM python:3.11-slim as test-stage
 
-# Set the working directory
-WORKDIR /app
+COPY --from=flask-stage /app /app
 
-# Copy the requirements file and install dependencies
-# If running from inside phase3: Adjust the Dockerfile to remove phase3/ from the COPY paths.
-# If running from the root of your project: Ensure Docker includes the correct build context by running the build command from the root and pointing to the correct Dockerfile.
-COPY requirements.txt requirements.txt
-RUN pip3 install --no-cache-dir -r /app/requirements.txt
-
-# Copy the application code
-COPY . /app
 
 # Test-specific CMD, can run tests if needed
 CMD ["pytest", "tests/"]
