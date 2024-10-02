@@ -5,8 +5,7 @@ FROM debian:buster-slim AS builder
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Update and install required packages without specific version numbers
-RUN apt-get update \
- && apt-get install --no-install-recommends -y \
+RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     libffi-dev \
     libgmp-dev \
