@@ -100,7 +100,7 @@ jobs:
       # Test the /version endpoint using curl
       - name: Test /version endpoint
         run: |
-          curl -s http://127.0.0.1:5000/version 
+          curl -s http://127.0.0.1:5000/version | tee | jq --exit-status '."msg" == "the version is {2}"'
         # | grep ""
 
 
