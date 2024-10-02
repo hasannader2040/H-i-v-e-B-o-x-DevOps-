@@ -24,13 +24,13 @@ FROM python:3.11-slim as flask-stage
 WORKDIR /app
 
 # Copy requirements.txt for dependency installation // I am confused with the requirements of evey stage 
-# COPY ./requirements.txt /app/requirements.txt
+COPY --from=version-stage /app /app
 
 # Install dependencies
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# # Copy the current directory contents into the container at /app
+# COPY . /app
 
 # Expose port 5000
 EXPOSE 5000
