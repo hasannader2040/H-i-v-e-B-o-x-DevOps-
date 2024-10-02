@@ -88,6 +88,15 @@ jobs:
       - name: Run unit tests
         run: python -m pytest phase3/tests/
 
+
+      - name: Wait for the app to be ready
+        run: sleep 10
+
+        # adding the logs 
+      - name: Check Docker container logs
+        run: docker logs $(docker ps -q)
+
+
       # Test the /version endpoint using curl
       - name: Test /version endpoint
         run: |
