@@ -1,13 +1,14 @@
 # Stage 1: Build stage for app_version.py
-FROM python:3.12-slim-bookworm as version-stage
+# Stage 1: Build stage for app_version.py
+FROM python:3.11-slim as version-stage
 
 # Set the working directory
 WORKDIR /app
 
-# Copy only requirements.txt first to leverage Docker's cache
+# Copy the requirements file first
 COPY requirements.txt /app/
 
-# Install dependencies
+#  depren ..
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 # Copy the rest of the files (including app_version.py)
@@ -16,6 +17,8 @@ COPY . /app
 # Define environment variable
 ENV PYTHONUNBUFFERED 1
 
+# Copy the rest of the files (including app_version.py)
+COPY . /app
 
 # Run the Python script for versioning
 CMD ["python", "app_version.py"]
