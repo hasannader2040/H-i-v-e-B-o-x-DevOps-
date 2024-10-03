@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ca-certificates \
     git \
     netbase \
- && curl -sSL https://get.haskellstack.org/ | sh \
- && rm -rf /var/lib/apt/lists/*
+&& curl -sSL https://get.haskellstack.org/ | sh \
+&& rm -rf /var/lib/apt/lists/*
 
 
 # Install dependencies and build the application
