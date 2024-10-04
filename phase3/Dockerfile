@@ -1,21 +1,21 @@
 # Stage 1: Build stage for app_version.py
-FROM python:3.11-slim as version-stage
-
-RUN apt-get update -y
-RUN apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev libsnmp-dev -y
+FROM python:3.12-slim-bookworm as version-stage
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy only requirements.txt first to leverage Docker's cache
+COPY requirements.txt /app/
 
-
-#  depren ..
+# Install dependencies
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
+
+# Copy the rest of the files (including app_version.py)
+COPY . /app
 
 # Define environment variable
 ENV PYTHONUNBUFFERED 1
+
 
 # Run the Python script for versioning
 CMD ["python", "app_version.py"]
@@ -25,17 +25,13 @@ CMD ["python", "app_version.py"]
 
 
 # Stage 2: Build and run stage for the Flask application
-FROM python:3.11-slim as flask-stage
+FROM python:3.12-slim-bookworm as flask-stage
 
 # Set the working directory
 WORKDIR /app
 
 # Copy requirements.txt for dependency installation // I am confused with the requirements of evey stage 
 COPY --from=version-stage /app /app
-
-
-# # Copy the current directory contents into the container at /app
-# COPY . /app
 
 # Expose port 5000
 EXPOSE 5000
@@ -54,6 +50,5 @@ COPY --from=flask-stage /app /app
 
 
 # Test-specific CMD, can run tests if needed
+
 CMD ["pytest", "tests/"]
-
-
