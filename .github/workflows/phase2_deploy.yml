@@ -27,6 +27,7 @@ jobs:
       # Step 4: Build the Docker image
       - name: Build Docker image
         run: docker build -t hasannader2040/hasan-api:temperature-app -f phase3/Dockerfile .
+# I made a chnage in docker file of it 
 
       # Step 5: Log in to Docker Hub using a command
       - name: Log in to Docker Hub

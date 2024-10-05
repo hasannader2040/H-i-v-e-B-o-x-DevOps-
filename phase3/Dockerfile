@@ -44,11 +44,10 @@ CMD ["flask", "run", "--host=0.0.0.0"]
 
 
 # Stage 3: Testing the Flask application 
-FROM python:3.11-slim as test-stage
+#FROM python:3.11-slim as test-stage
 
-COPY --from=flask-stage /app /app
+#COPY --from=flask-stage /app /app
 
 
 # Test-specific CMD, can run tests if needed
-
-CMD ["pytest", "tests/"]
+#CMD ["pytest", "tests/"]
