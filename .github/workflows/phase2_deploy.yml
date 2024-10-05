@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'phase3/**'
+      - 'phase2/**'
 
 jobs:
   build:
