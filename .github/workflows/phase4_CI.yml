@@ -1,56 +1,54 @@
-name: Phase4_CI Pipeline
-
 on:
+  # Trigger analysis when pushing in master or pull requests, and when creating
+  # a pull request.
   push:
     branches:
       - master
-    # paths:
-    #   - 'phase4/**'
   pull_request:
-    branches:
-      - master
-    # paths:
-    #   - 'phase4/**'      
+    types: [opened, synchronize, reopened]
+
+name: Main Workflow
 
 jobs:
-  combined:
+  sonarqube:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    # Step to checkout the code
+    - uses: actions/checkout@v3
       with:
-        python-version: '3.11'
+        # Disabling shallow clone is recommended for improving relevancy of reporting.
+        fetch-depth: 0
 
-    - name: Install Python dependencies
-      run: pip install -r phase3/requirements.txt
-
-    # - name: Run Python tests
-    #   run: pytest tests/ // 
-
+    # SonarQube Scan
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
       env:
-        SONAR_HOST_URL: https://sonarcloud.io
-        SONAR_LOGIN: ${{ env.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  # Using secret SONAR_HOST_URL
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}        # Using secret SONAR_TOKEN
 
-
+    # SonarQube Quality Gate check
     - name: SonarQube Quality Gate check
+      id: sonarqube-quality-gate-check
       uses: sonarsource/sonarqube-quality-gate-action@v1.0.0
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}         # Using secret SONAR_TOKEN
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   # Optional: SONAR_HOST_URL if needed
 
+    # Optionally display the Quality Gate status
+    - name: "Show SonarQube Quality Gate Status"
+      run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
+
+
+      
+    # Run Semgrep Security Scan (Optional)
     - name: Run Semgrep
       uses: returntocorp/semgrep-action@v1
       with:
         config: 'p/ci'
 
+    # Optional: Install Terrascan and run it for infrastructure-as-code (Optional)
     - name: Install Terrascan
       run: |
         curl -L https://github.com/accurics/terrascan/releases/download/v1.14.0/terrascan_1.14.0_linux_amd64.tar.gz | tar xz -C /usr/local/bin terrascan
-
     - name: Run Terrascan
       run: terrascan scan -i k8s -d ./manifests
