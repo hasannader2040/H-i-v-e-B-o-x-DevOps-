@@ -1,11 +1,12 @@
 on:
-  # Trigger analysis when pushing in master or pull requests, and when creating
-  # a pull request.
   push:
     branches:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
+    paths:
+      - 'phase4/**'
+      
 
 name: Main Workflow
 
@@ -13,42 +14,72 @@ jobs:
   sonarqube:
     runs-on: ubuntu-latest
     steps:
-    # Step to checkout the code
     - uses: actions/checkout@v3
       with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting.
         fetch-depth: 0
 
-    # SonarQube Scan
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
       env:
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  # Using secret SONAR_HOST_URL
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}        # Using secret SONAR_TOKEN
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-    # SonarQube Quality Gate check
     - name: SonarQube Quality Gate check
       id: sonarqube-quality-gate-check
       uses: sonarsource/sonarqube-quality-gate-action@v1.0.0
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}         # Using secret SONAR_TOKEN
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   # Optional: SONAR_HOST_URL if needed
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-    # Optionally display the Quality Gate status
     - name: "Show SonarQube Quality Gate Status"
       run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
 
+  # Integration Testing Job
+  integration_tests:
+    runs-on: ubuntu-latest
+    needs: sonarqube
+    services:
+      docker:
+        image: hassannader2040/temperature-app
+        ports:
+          - 5000:5000
 
-      
-    # Run Semgrep Security Scan (Optional)
-    - name: Run Semgrep
-      uses: returntocorp/semgrep-action@v1
-      with:
-        config: 'p/ci'
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
 
-    # Optional: Install Terrascan and run it for infrastructure-as-code (Optional)
-    - name: Install Terrascan
-      run: |
-        curl -L https://github.com/accurics/terrascan/releases/download/v1.14.0/terrascan_1.14.0_linux_amd64.tar.gz | tar xz -C /usr/local/bin terrascan
-    - name: Run Terrascan
-      run: terrascan scan -i k8s -d ./manifests
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install test dependencies
+        run: pip install -r requirements.txt
+
+      - name: Wait for the app to be ready
+        run: sleep 10
+
+      - name: Run integration tests
+        run: pytest tests/integration/test_api.py
+
+  # Semgrep Security Scan
+  security_scan:
+    runs-on: ubuntu-latest
+    needs: [sonarqube, integration_tests]
+    steps:
+      - name: Run Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: 'r2c-security-audit'  # Use an appropriate rule set
+
+  # Terrascan Security Scan
+  terrascan:
+    runs-on: ubuntu-latest
+    needs: [security_scan]
+    steps:
+      - name: Install Terrascan
+        run: |
+          curl -L https://github.com/accurics/terrascan/releases/download/v1.14.0/terrascan_1.14.0_linux_amd64.tar.gz | tar xz -C /usr/local/bin terrascan
+
+      - name: Run Terrascan
+        run: terrascan scan -i k8s -d ./path_to_your_kubernetes_manifests  # Update with the correct path
