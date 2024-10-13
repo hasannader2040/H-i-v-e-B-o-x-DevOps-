@@ -23,6 +23,8 @@ jobs:
       env:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  # Should be set to a valid URL, e.g., https://sonar.yourdomain.com
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_PROJECT_KEY: my_project_key    # Add your project key here
+        SONAR_ORGANIZATION: loveusmile  # Add your organization here
 
     - name: SonarQube Quality Gate check
       id: sonarqube-quality-gate-check
