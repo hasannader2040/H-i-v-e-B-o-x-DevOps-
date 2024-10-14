@@ -56,7 +56,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install test dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r phase3/requirements.txt
 
       - name: Wait for the app to be ready
         run: sleep 10
