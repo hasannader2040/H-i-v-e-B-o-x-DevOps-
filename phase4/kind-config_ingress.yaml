@@ -1,0 +1,31 @@
+# Step 5: Configure Ingress Resource
+
+#echo "
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-python-app-ingress
+  namespace: my-application-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: my-python-app.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-python-app-service
+            port:
+              number: 80
+#" > ingress.yaml
+
+# Step 6: Update /etc/hosts
+#echo "127.0.0.1 my-python-app.local" | sudo tee -a /etc/hosts
+
+# Step 7: Apply Ingress Resource
+#kubectl apply -f ingress.yaml
+
+# Your application should now be accessible

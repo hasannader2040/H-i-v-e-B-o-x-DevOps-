@@ -1,0 +1,29 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+  - role: worker
+  - role: worker
+
+# Configuring extra port mappings for the ingress controller
+networking:
+  apiServerAddress: "127.0.0.1"
+  apiServerPort: 6443
+  disableDefaultCNI: false
+  # Ingress NGINX port mappings for local development
+  extraPortMappings:
+    - containerPort: 80
+      hostPort: 80
+      protocol: TCP
+    - containerPort: 443
+      hostPort: 443
+      protocol: TCP
+
+# Step 2: Create the Kind Cluster
+#kind create cluster --config kind-cluster-config.yaml --name my-kind-cluster
+
+# Step 3: Install Ingress-Nginx Controller
+#kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+
+# Step 4: Verify Installation
+#kubectl get pods -n ingress-nginx
