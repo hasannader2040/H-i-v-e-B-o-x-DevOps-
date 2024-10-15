@@ -62,7 +62,7 @@ jobs:
         run: sleep 10
 
       - name: Run integration tests
-        run: pytest tests/integration/test_api.py
+        run: pytest test/integration/test_api.py
 
   # Semgrep Security Scan
   security_scan:
