@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-python-app-service
+  namespace: my-application-namespace # Ensure this matches the namespace if you use one
+spec:
+  type: LoadBalancer
+  selector:
+    app: my-python-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000

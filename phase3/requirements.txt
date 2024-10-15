@@ -7,3 +7,8 @@ MarkupSafe==2.1.5
 Werkzeug==3.0.3
 pytest==8.3.3
 prometheus_client==0.21.0
+PyYAML  # Assuming you need this, but version can be specified if needed
+coverage  # Assuming you need this for test coverage
+pip  # This is usually not needed in requirements since it's a given
+pylint  # Static code analyzer
+requests==2.31.0  # Add this line with a specific version for stability
