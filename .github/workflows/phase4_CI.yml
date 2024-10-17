@@ -29,9 +29,9 @@ jobs:
     - name: SonarQube Quality Gate check
       id: sonarqube-quality-gate-check
       uses: sonarsource/sonarqube-quality-gate-action@v1.0.0
-#      env:
-#        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
     - name: "Show SonarQube Quality Gate Status"
       run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
@@ -75,13 +75,28 @@ jobs:
           config: 'r2c-security-audit'  # Use an appropriate rule set
 
   # Terrascan Security Scan
-  terrascan:
+  terrascan_job:
     runs-on: ubuntu-latest
-    needs: [security_scan]
+    name: terrascan-action
     steps:
-      - name: Install Terrascan
-        run: |
-          curl -L https://github.com/accurics/terrascan/releases/download/v1.14.0/terrascan_1.14.0_linux_amd64.tar.gz | tar xz -C /usr/local/bin terrascan
-
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Run Terrascan
-        run: terrascan scan -i k8s -d ./path_to_your_kubernetes_manifests  # Update with the correct path
+        id: terrascan
+        uses: tenable/terrascan-action@main
+        with:
+          iac_type: 'k8s'
+          iac_version: 'v1'
+          policy_type: 'k8s'
+          only_warn: false
+          #scm_token: ${{ secrets.ACCESS_TOKEN }}
+          #verbose: true
+          #sarif_upload: true
+          #non_recursive:
+          #iac_dir:
+          #policy_path:
+          #skip_rules:
+          #config_path:
+          #find_vulnerabilities:
+          #webhook_url:
+          #webhook_token:
