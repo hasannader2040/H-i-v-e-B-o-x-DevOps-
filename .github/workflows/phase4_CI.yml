@@ -29,9 +29,9 @@ jobs:
     - name: SonarQube Quality Gate check
       id: sonarqube-quality-gate-check
       uses: sonarsource/sonarqube-quality-gate-action@v1.0.0
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+#      env:
+#        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
     - name: "Show SonarQube Quality Gate Status"
       run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
