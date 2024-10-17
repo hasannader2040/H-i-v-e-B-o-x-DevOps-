@@ -8,3 +8,5 @@ Werkzeug==3.0.3
 pytest==8.3.3
 prometheus_client==0.21.0
 requests==2.31.0  # Add this line with a specific version for stability
+flask-caching==2.3.0
+redis==5.1.1
