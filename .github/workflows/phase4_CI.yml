@@ -59,10 +59,18 @@ jobs:
         run: pip install -r phase3/requirements.txt
 
       - name: Wait for the app to be ready
-        run: sleep 10
+        run: |
+          for i in {1..30}; do
+            if curl http://127.0.0.1:5000/temperature; then
+              break
+            fi
+            echo "Waiting for the app to be ready..."
+            sleep 2
+          done
 
       - name: Run integration tests
         run: pytest test/integration/test_api.py
+
 
   # Semgrep Security Scan
   security_scan:
