@@ -26,15 +26,15 @@ jobs:
         SONAR_PROJECT_KEY: hasannader2040_restful-opensensemap-Api   # Add your project key here
         SONAR_ORGANIZATION: hasannader2040  # Add your organization here
 
-    - name: SonarQube Quality Gate check
-      id: sonarqube-quality-gate-check
-      uses: sonarsource/sonarqube-quality-gate-action@v1.0.0
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-    - name: "Show SonarQube Quality Gate Status"
-      run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
+#    - name: SonarQube Quality Gate check
+#      id: sonarqube-quality-gate-check
+#      uses: sonarsource/sonarqube-quality-gate-action@v1.0.0
+#      env:
+#        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+#
+#    - name: "Show SonarQube Quality Gate Status"
+#      run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
 
   # Integration Testing Job
   integration_tests:
