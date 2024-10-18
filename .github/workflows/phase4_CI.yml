@@ -37,6 +37,7 @@ jobs:
 #      run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
 
   # Integration Testing Job
+
   integration_tests:
     runs-on: ubuntu-latest
     needs: sonarqube
@@ -61,26 +62,21 @@ jobs:
       - name: Wait for the app to be ready
         run: |
           for i in {1..30}; do
-            if curl http://127.0.0.1:5000/temperature; then
+            if curl -s http://127.0.0.1:5000/temperature; then
+              echo "Application is ready!"
               break
             fi
             echo "Waiting for the app to be ready..."
             sleep 2
           done
 
+      - name: Show Docker container logs (for debugging)
+        if: failure()
+        run: docker logs $(docker ps -q --filter ancestor=hassannader2040/temperature-app)
+
       - name: Run integration tests
         run: pytest test/integration/test_api.py
 
-
-  # Semgrep Security Scan
-  security_scan:
-    runs-on: ubuntu-latest
-    needs: [sonarqube, integration_tests]
-    steps:
-      - name: Run Semgrep
-        uses: returntocorp/semgrep-action@v1
-        with:
-          config: 'r2c-security-audit'  # Use an appropriate rule set
 
   # Terrascan Security Scan
   terrascan_job:

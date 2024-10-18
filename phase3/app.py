@@ -27,11 +27,13 @@ def create_app():
             temperature_celsius = 36
             response = jsonify({"temperature": f"The temperature is {temperature_celsius} degree celsius"})
             app.logger.debug(f"Temperature data: {response.get_json()}")
+            response.status_code = 200
         except Exception as e:
             app.logger.error(f"Error in /temperature endpoint: {e}")
-            response = jsonify({"error": str(e)}), 500
+            response = jsonify({"error": str(e)})
+            response.status_code = 500
         response.headers.add("Access-Control-Allow-Origin", "*")
-        return response, 200
+        return response
 
     return app
 
