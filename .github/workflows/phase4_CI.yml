@@ -2,11 +2,11 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    types: [opened, synchronize, reopened]
+#  pull_request:
+#    types: [opened, synchronize, reopened]
     paths:
       - 'phase4/**'
-      
+
 
 name: phase4_ci pipeline
 

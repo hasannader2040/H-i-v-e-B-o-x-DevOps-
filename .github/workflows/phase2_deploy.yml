@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'phase2/**'
+#      - 'phase2/**'
 # Docker file of it
 jobs:
   build:
