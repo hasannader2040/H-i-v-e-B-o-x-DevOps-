@@ -1,11 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: example-app-service
+  name: mywebapp
+  namespace: default
+  labels:
+    app: mywebapp
 spec:
-  type: LoadBalancer
   ports:
-  - port: 5678
-    targetPort: 5678
+  - port: 80
+    protocol: TCP
+    name: flask
   selector:
-    app: example-app
+    app: mywebapp
+    tier: frontend
+  type: NodePort

@@ -61,14 +61,23 @@ jobs:
 
       - name: Wait for the app to be ready
         run: |
+          ready=0
           for i in {1..30}; do
             if curl -s http://127.0.0.1:5000/temperature; then
               echo "Application is ready!"
+              ready=1
               break
             fi
             echo "Waiting for the app to be ready..."
             sleep 2
           done
+          if [ $ready = 1 ]; then 
+            echo "Application is ready!"
+          else 
+            echo "Application is not ready!"
+            exit 1 
+          fi
+          
 
       - name: Show Docker container logs (for debugging)
         if: failure()

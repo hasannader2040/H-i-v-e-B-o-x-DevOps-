@@ -5,7 +5,7 @@ FROM python:3.12-slim-bookworm as version-stage
 WORKDIR /app
 
 # Copy only requirements.txt first to leverage Docker's cache
-COPY requirements.txt /app/
+COPY phase3/requirements.txt /app/
 
 # Install dependencies
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
