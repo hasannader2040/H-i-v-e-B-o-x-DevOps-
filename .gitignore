@@ -8,4 +8,5 @@ dist/
 htmlcov/
 .tox/
 docs/_build/
-node_modules
+node_modules/
+.pytest_cache/

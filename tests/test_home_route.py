@@ -1,10 +1,13 @@
 import pytest
-from phase3.app import app as application  # Adjusted import
+from phase3.app import create_app  # Adjusted import
 
 @pytest.fixture
 def app():
     # Rename the variable to avoid shadowing the function name
-    application.config.update( {"TESTING": True,} )
+    application = create_app()
+    application.config.update({
+        "TESTING": True,
+    })
     return application
 
 @pytest.fixture
