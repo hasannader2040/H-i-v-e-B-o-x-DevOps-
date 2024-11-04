@@ -50,4 +50,4 @@ CMD ["flask", "run", "--host=0.0.0.0"]
 
 
 # Test-specific CMD, can run tests if needed
-#CMD ["pytest", "tests/"]
+#CMD ["pytest", "tests"]
