@@ -6,16 +6,15 @@ metadata:
   labels:
     app: mywebapp
 spec:
-  replicas: 5
+  replicas: 2
   selector:
     matchLabels:
       app: mywebapp
-      tier: frontend
+#
   template:
     metadata:
       labels:
         app: mywebapp
-        tier: frontend
     spec: # Pod spec
       containers:
       - name: mycontainer
@@ -24,7 +23,7 @@ spec:
         - containerPort: 80
         envFrom:
         - configMapRef:
-            name: myconfigmapv1.0
+            name: myconfigmap-part1
         resources:
           requests:
             memory: "16Mi"

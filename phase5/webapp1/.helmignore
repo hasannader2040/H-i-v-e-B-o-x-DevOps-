@@ -21,3 +21,11 @@
 .idea/
 *.tmproj
 .vscode/
+
+*.log
+*.tmp
+.DS_Store
+node_modules/
+test/
+docs/
+
