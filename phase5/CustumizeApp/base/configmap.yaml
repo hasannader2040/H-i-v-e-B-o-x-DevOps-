@@ -1,0 +1,17 @@
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: keyval-config
+#data:
+#  DATABASE_URL: "postgres://user:password@localhost:5432/keyval"
+#  REDIS_URL: "redis://localhost:6379"
+
+
+# base/keyval.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keyval-config
+data:
+  DATABASE_URL: "postgres://user:password@localhost:5432/mydb"
+  LOG_LEVEL: "INFO"
