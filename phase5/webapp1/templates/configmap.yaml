@@ -1,9 +1,17 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: myconfigmapv1.0
+  name: myconfigmap-part1
   namespace: default
 data:
   BG_COLOR: '#12181b'
   FONT_COLOR: '#FFFFFF'
-  CUSTOM_HEADER: 'Customized with a configmap!'
+
+#---
+#kind: ConfigMap
+#apiVersion: v1
+#metadata:
+#  name: myconfigmap-part2
+#  namespace: default
+#data:
+#  CUSTOM_HEADER: 'Customized with a configmap!'

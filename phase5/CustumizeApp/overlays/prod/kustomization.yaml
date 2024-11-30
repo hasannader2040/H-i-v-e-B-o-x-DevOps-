@@ -1,0 +1,5 @@
+# overlays/prod/kustomization.yaml
+bases:
+  - ../../base
+patchesStrategicMerge:
+  - configmap-patch.yaml

@@ -1,0 +1,6 @@
+# overlays/production/kustomization.yaml
+bases:
+  - ../../base
+
+patchesStrategicMerge:
+  - patch.yaml
