@@ -1,5 +1,7 @@
-# base/kustomization.yaml
+# ~/apps/my-web-app/base/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 resources:
-  - configmap.yaml
-  - deployment.yaml
-  - service.yaml
+- deployment.yaml
+- service.yaml

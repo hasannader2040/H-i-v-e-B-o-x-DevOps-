@@ -1,5 +1,20 @@
-# overlays/prod/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namePrefix: prod-
+
+commonLabels:
+    app: my-app
+    env: prod
+
+
 bases:
-  - ../../base
+  - ../../../base
+
+resources:
+  - ingress.yaml
+
 patchesStrategicMerge:
-  - configmap-patch.yaml
+  - deployment.yaml
+
+namespace: prod
