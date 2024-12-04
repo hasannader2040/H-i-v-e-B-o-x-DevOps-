@@ -1,0 +1,63 @@
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+}
+
+resource "kubernetes_deployment" "grafana_agent" {
+  metadata {
+    name = "grafana-agent"
+    namespace = "monitoring"
+  }
+
+  spec {
+    replicas = 1
+
+    selector {
+      match_labels = {
+        app = "grafana-agent"
+      }
+    }
+
+    template {
+      metadata {
+        labels = {
+          app = "grafana-agent"
+        }
+      }
+
+      spec {
+        container {
+          name  = "grafana-agent"
+          image = "grafana/agent:latest"
+
+          args = [
+            "--config.file=/etc/agent/agent.yaml"
+          ]
+
+          volume_mount {
+            name       = "config-volume"
+            mount_path = "/etc/agent"
+          }
+        }
+
+        volume {
+          name = "config-volume"
+          config_map {
+            name = "agent-config"
+          }
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_config_map" "agent_config" {
+  metadata {
+    name      = "agent-config"
+    namespace = "monitoring"
+  }
+
+  data = {
+    "agent.yaml" = file("${path.module}/agent.yaml")
+  }
+}
+

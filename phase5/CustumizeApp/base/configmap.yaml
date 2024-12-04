@@ -11,7 +11,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: keyval-config
+  name: the-map
 data:
-  DATABASE_URL: "postgres://user:password@localhost:5432/mydb"
-  LOG_LEVEL: "INFO"
+  altGreeting: "Good Morning!"
+  enableRisky: "false"

@@ -1,13 +1,10 @@
-# base/service.yaml
+# ~/apps/my-web-app/base/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-service
+  name: my-web-app-service
 spec:
-  selector:
-    app: my-app
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: ClusterIP

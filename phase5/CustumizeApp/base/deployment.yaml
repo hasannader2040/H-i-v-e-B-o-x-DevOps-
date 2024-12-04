@@ -1,30 +1,12 @@
-# base/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
-  labels:
-    app: my-app
+  name: my-app-deployment
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: my-app
   template:
-    metadata:
-      labels:
-        app: my-app
     spec:
       containers:
-      - name: my-container
-        image: my-app-image:latest
+      - name: nginx
+        image: nginx:1.14.2
         ports:
-        - containerPort: 8080
-        readinessProbe:
-          httpGet:
-            path: /readyz
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 10
-          successThreshold: 1
-          failureThreshold: 3
+        - containerPort: 80
