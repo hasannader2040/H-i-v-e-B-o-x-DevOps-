@@ -8,7 +8,7 @@ commonLabels:
     env: stage
 
 bases:
-  - ../../../base
+  - ../../base
 
 resources:
   - ingress.yaml
