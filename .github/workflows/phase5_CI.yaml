@@ -1,0 +1,54 @@
+name: CI Pipeline with Venom
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+    - 'phase4/**'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Setup Kubernetes (KIND)
+    - name: Setup KIND
+      uses: helm/kind-action@v1.5.0
+      with:
+        kind-config: |
+          kind: Cluster
+          apiVersion: kind.x-k8s.io/v1alpha4
+          nodes:
+          - role: control-plane
+          - role: worker
+      id: kind-setup
+
+    # Apply Kubernetes manifests
+    - name: Deploy application to KIND
+      run: |
+        kubectl apply -k phase5/CustumizeApp/overlays/dev
+        kubectl wait --for=condition=available --timeout=60s deployment/my-app-deployment
+
+    # Install Venom
+    - name: Install Venom
+      run: |
+        curl -L https://github.com/ovh/venom/releases/download/v1.1.0/venom.linux-amd64 -o /usr/local/bin/venom
+        chmod +x /usr/local/bin/venom
+        venom version
+
+    # Run Venom End-to-End Tests
+    - name: Run Venom E2E Tests
+      run: venom run phase5/e2e-tests/e2e-test.yml
+
+    # Cleanup KIND cluster (Optional: if KIND is not auto-cleaned by the Action)
+    - name: Cleanup KIND
+      if: always()
+      run: kind delete cluster

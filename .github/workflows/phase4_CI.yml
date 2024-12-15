@@ -59,6 +59,8 @@ jobs:
 
       - name: Install test dependencies
         run: pip install -r phase3/requirements.txt
+# running my application which privide me this answer
+#        http://localhost:5000/temperature
 
       - name: Wait for the app to be ready
         run: |
