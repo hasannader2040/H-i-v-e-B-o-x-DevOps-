@@ -1,0 +1,45 @@
+Dec 15 13:37:49.561 [INFO] Reading e2e-test-suite.yaml
+Dec 15 13:37:49.562 [INFO] Parsing testsuite e2e-test-suite.yaml : map[venom.datetime:2024-12-15T13:37:49+03:00 venom.testsuite:e2e test venom.testsuite.filename:e2e-test-suite.yaml venom.testsuite.filepath:e2e-test-suite.yaml venom.testsuite.name:e2e test venom.testsuite.shortName:e2e-test-suite venom.testsuite.workdir:/media/hasan/E1/Downloads/Video/AWS_COURSE_IN_ARABIC/API_PROJECT/hasan2/restful-opensensemap-Api/phase5/e2e-tests venom.timestamp:1734259069]
+Dec 15 13:37:49.572 [DEBU] Testsuite (e2e-test-suite.yaml) variables: map[venom.datetime:2024-12-15T13:37:49+03:00 venom.testsuite:e2e test venom.testsuite.filename:e2e-test-suite.yaml venom.testsuite.filepath:e2e-test-suite.yaml venom.testsuite.name:e2e test venom.testsuite.shortName:e2e-test-suite venom.testsuite.workdir:/media/hasan/E1/Downloads/Video/AWS_COURSE_IN_ARABIC/API_PROJECT/hasan2/restful-opensensemap-Api/phase5/e2e-tests venom.timestamp:1734259069]
+Dec 15 13:37:49.572 [DEBU] nb testsuites: 1
+Dec 15 13:37:49.572 [INFO] [e2e test] Starting testsuite
+Dec 15 13:37:49.572 [INFO] [e2e test] [Test-application-readiness] Starting testcase
+Dec 15 13:37:49.572 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.libdir: 
+Dec 15 13:37:49.572 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.testsuite.workdir: /media/hasan/E1/Downloads/Video/AWS_COURSE_IN_ARABIC/API_PROJECT/hasan2/restful-opensensemap-Api/phase5/e2e-tests
+Dec 15 13:37:49.572 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.datetime: 2024-12-15T13:37:49+03:00
+Dec 15 13:37:49.572 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable __Len__: 8
+Dec 15 13:37:49.572 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.executable: /home/hasan/bin/venom
+Dec 15 13:37:49.572 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.testsuite: e2e test
+Dec 15 13:37:49.572 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.outputdir: 
+Dec 15 13:37:49.572 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.testsuite.name: e2e test
+Dec 15 13:37:49.572 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.timestamp: 1734259069
+Dec 15 13:37:49.573 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable __Type__: Map
+Dec 15 13:37:49.573 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.testcase: Test-application-readiness
+Dec 15 13:37:49.573 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.testsuite.shortName: e2e-test-suite
+Dec 15 13:37:49.573 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.testsuite.filename: e2e-test-suite.yaml
+Dec 15 13:37:49.573 [DEBU] [e2e test] [Test-application-readiness] Running testcase with variable venom.testsuite.filepath: e2e-test-suite.yaml
+Dec 15 13:37:49.573 [INFO] [e2e test] [Test-application-readiness] Step #0 content is: {"assertions":["result.statuscode ShouldEqual 200"],"method":"GET","type":"http","url":"http://my-app-service.dev.svc.cluster.local:80/readyz"}
+Dec 15 13:37:49.575 [ERRO] [e2e test] [Test-application-readiness] Errors: 
+Dec 15 13:37:49.575 [ERRO] [e2e test] [Test-application-readiness] [33mTestcase "Test application readiness", step #0-0: Get "http://my-app-service.dev.svc.cluster.local:80/readyz": dial tcp: lookup my-app-service.dev.svc.cluster.local on 127.0.0.53:53: server misbehaving (e2e-test-suite.yaml:6)[0m
+Dec 15 13:37:49.575 [INFO] [e2e test] [Test-application-readiness] Ending testcase
+Dec 15 13:37:49.576 [INFO] [e2e test] [Test-main-API-endpoint] Starting testcase
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.testsuite.filepath: e2e-test-suite.yaml
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable __Len__: 8
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable __Type__: Map
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.testsuite.filename: e2e-test-suite.yaml
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.testsuite.name: e2e test
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.testsuite: e2e test
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.libdir: 
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.testsuite.workdir: /media/hasan/E1/Downloads/Video/AWS_COURSE_IN_ARABIC/API_PROJECT/hasan2/restful-opensensemap-Api/phase5/e2e-tests
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.timestamp: 1734259069
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.testcase: Test-main-API-endpoint
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.datetime: 2024-12-15T13:37:49+03:00
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.executable: /home/hasan/bin/venom
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.outputdir: 
+Dec 15 13:37:49.576 [DEBU] [e2e test] [Test-main-API-endpoint] Running testcase with variable venom.testsuite.shortName: e2e-test-suite
+Dec 15 13:37:49.576 [INFO] [e2e test] [Test-main-API-endpoint] Step #0 content is: {"assertions":["result.statuscode ShouldEqual 200","result.bodyjson.data ShouldNotBeEmpty"],"method":"GET","type":"http","url":"http://my-app-service.dev.svc.cluster.local:80/api/data"}
+Dec 15 13:37:49.577 [ERRO] [e2e test] [Test-main-API-endpoint] Errors: 
+Dec 15 13:37:49.578 [ERRO] [e2e test] [Test-main-API-endpoint] [33mTestcase "Test main API endpoint", step #0-0: Get "http://my-app-service.dev.svc.cluster.local:80/api/data": dial tcp: lookup my-app-service.dev.svc.cluster.local on 127.0.0.53:53: server misbehaving (e2e-test-suite.yaml:14)[0m
+Dec 15 13:37:49.578 [INFO] [e2e test] [Test-main-API-endpoint] Ending testcase
+Dec 15 13:37:49.578 [INFO] [e2e test] Ending testsuite
+Dec 15 13:37:49.578 [DEBU] final status: FAIL
