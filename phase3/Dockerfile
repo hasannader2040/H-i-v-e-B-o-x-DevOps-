@@ -1,20 +1,5 @@
-# Stage 1: Build stage for app_version.py
-FROM python:slim as version-stage
-# FROM python:slim as flask-stage
-
-# WORKDIR /app
-
-# Fix repository issues for legacy Debian
-RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list && \
-    sed -i 's|http://security.debian.org/debian-security|http://archive.debian.org/debian-security|g' /etc/apt/sources.list && \
-    apt-get update
-
-# COPY --from=version-stage /app /app
-
-# EXPOSE 5000
-
-# CMD ["flask", "run", "--host=0.0.0.0"]
-
+# Stage 1: Versioning stage
+FROM python:3.11-slim as version-stage
 
 # Set the working directory
 WORKDIR /app
@@ -29,23 +14,20 @@ RUN pip3 install --no-cache-dir -r /app/requirements.txt
 COPY . /app
 
 # Define environment variable
-ENV PYTHONUNBUFFERED 1
-
+ENV PYTHONUNBUFFERED=1
 
 # Run the Python script for versioning
 CMD ["python", "app_version.py"]
 
-
 # ----------------------------------------
 
-
 # Stage 2: Build and run stage for the Flask application
-FROM python:slim as flask-stage
+FROM python:3.11-slim as flask-stage
 
 # Set the working directory
 WORKDIR /app
 
-# Copy requirements.txt for dependency installation // I am confused with the requirements of evey stage
+# Copy everything from the version stage
 COPY --from=version-stage /app /app
 
 # Expose port 5000
@@ -54,15 +36,20 @@ EXPOSE 5000
 # Run the Flask application
 CMD ["flask", "run", "--host=0.0.0.0"]
 
-
 # ----------------------------------------
 
+# Stage 3: Testing the Flask application
+FROM python:3.11-slim as test-stage
 
-# Stage 3: Testing the Flask application 
-#FROM python:3.11-slim as test-stage
+# Set the working directory
+WORKDIR /app
 
-#COPY --from=flask-stage /app /app
+# Copy everything from the Flask stage
+COPY --from=flask-stage /app /app
 
+# Install test dependencies (if separate)
+COPY phase3/test-requirements.txt /app/
+RUN pip3 install --no-cache-dir -r /app/test-requirements.txt
 
 # Test-specific CMD, can run tests if needed
 CMD ["pytest", "tests/integration"]
