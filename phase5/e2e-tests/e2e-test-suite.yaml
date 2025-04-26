@@ -4,7 +4,7 @@ testcases:
     steps:
       - type: http
         method: GET
-        url: http://:8080/readyz
+        url: http://mydeployment.dev.svc.cluster.local:8080/readyz
         assertions:
           - result.statuscode ShouldEqual 200
 

@@ -60,6 +60,9 @@ RUN pip3 install --no-cache-dir -r /app/requirements.txt
 # Test-specific CMD, can run tests if needed
 CMD ["pytest", "test/integration"]
 
+
+
+
 # (testing) tara@DESKTOP-VFLLPIU:/tmp/H-i-v-e-B-o-x-DevOps-/phase3$ ls
 # Dockerfile  __init__.py  __pycache__  app.py  requirements.txt  test  tests
 # (testing) tara@DESKTOP-VFLLPIU:/tmp/H-i-v-e-B-o-x-DevOps-/phase3$ cat Dockerfile
