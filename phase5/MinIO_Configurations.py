@@ -11,8 +11,8 @@ import os
 app = Flask(__name__)
 
 # Valkey/Redis Cache configuration
-app.config['CACHE_TYPE'] = 'redis'
-app.config['CACHE_REDIS_URL'] = 'redis://localhost:6379/0'
+REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
+app.config['CACHE_REDIS_URL'] = f'redis://{REDIS_HOST}:6379/0'
 
 cache = Cache(app)
 
@@ -80,8 +80,8 @@ def metrics():
 def readyz():
     # Check if 50% of senseBoxes are accessible (Example logic)
     sense_boxes_status = [True, True, False, False]
-    accessible_boxes = sum(sense_boxes_status)
-    total_boxes = len(sense_boxes_status)
+    # accessible_boxes = sum(sense_boxes_status)
+    # total_boxes = len(sense_boxes_status)
 
     last_store_time = cache.get('last_store_time')
     if last_store_time:
@@ -93,7 +93,7 @@ def readyz():
     else:
         cache_old = True
 
-    if accessible_boxes <= total_boxes // 2 and cache_old:
+    if   cache_old:
         return "Service Unavailable", 503
     return "Ready", 200
 
