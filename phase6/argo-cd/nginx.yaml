@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx
+  name: hivebox-nginx
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/hasannader2040/H-i-v-e-B-o-x-DevOps-.git'
-    path: overlays
+    path: restful-opensensemap-Api/phase6/argo-cd  # Update this if your folder is different
     targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'
