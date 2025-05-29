@@ -10,9 +10,12 @@ my_new_env/
 __pycache__/
 
 # Terraform
+**/.terraform/
 .terraform*
 *.tfstate
 *.tfstate.*
+.terraform.lock.hcl
+
 # *.terraform.lock.hcl
 crash.log
 
