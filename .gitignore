@@ -10,10 +10,12 @@ my_new_env/
 __pycache__/
 
 # Terraform
-.terraform/
+.terraform*
 *.tfstate
-*.tfstate.backup
-.terraform.lock.hcl
+*.tfstate.*
+# *.terraform.lock.hcl
+crash.log
+
 
 # Node.js
 node_modules/
@@ -32,3 +34,4 @@ docs/_build/
 .DS_Store
 
 .terraform/
+
