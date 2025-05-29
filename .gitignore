@@ -9,12 +9,29 @@ myenv/
 my_new_env/
 __pycache__/
 
-# Terraform
-**/.terraform/
-.terraform*
+# .terraform (provider binaries, external module source code, …)
+**/.terraform/*
+# state files
 *.tfstate
 *.tfstate.*
-.terraform.lock.hcl
+
+# Crash log files (if you run Terraform locally)
+crash.log
+crash.*.log
+
+# Variable files
+*.tfvars
+*.tfvars.json
+
+# Override files (HCL or JSON, depending on your configuration)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform CLI configuration files
+.terraformrc
+terraform.rc
 
 # *.terraform.lock.hcl
 crash.log
