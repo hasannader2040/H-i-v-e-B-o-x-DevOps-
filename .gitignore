@@ -1,14 +1,33 @@
+# IDEs and editors
 .idea/
 .vscode/
-.venv*/
-venv*/
+
+# Python environments
+.venv/
+venv/
+myenv/
+my_new_env/
 __pycache__/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+# .terraform.lock.hcl
+
+# Node.js
+node_modules/
+
+# Python testing and packaging
 dist/
 .coverage*
 htmlcov/
 .tox/
+*.egg-info/
+
+# Sphinx docs
 docs/_build/
-node_modules
-node_modules
-.terraform/
-*.tfstate
+
+# Mac system files
+.DS_Store
+
