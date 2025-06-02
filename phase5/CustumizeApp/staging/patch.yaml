@@ -13,3 +13,7 @@ spec:
           env:
             - name: LOG_LEVEL
               value: "DEBUG"
+# if the container was created or not
+# generating the staging and how to make sure if it works or not
+# generating the stages
+

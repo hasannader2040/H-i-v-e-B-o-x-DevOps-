@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/hasannader2040/H-i-v-e-B-o-x-DevOps-.git'
-    path: phase6/argo-cd  # Update this if your folder is different
+    path: phase5/customizeApp  # Update this if your folder is different
     targetRevision: master
   destination:
     server: 'https://kubernetes.default.svc'
